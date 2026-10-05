@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CantuStore | Carrinho Abandonado</title>
+  <style>
+    :root {
+      --bg: #0b1220;
+      --panel: #121d2d;
+      --panel-2: #17273d;
+      --accent: #24c2a1;
+      --accent-2: #4aa3ff;
+      --text: #edf3ff;
+      --muted: #b7c7db;
+      --warning: #f5b25a;
+      --danger: #ff7d7d;
+      --success: #72e0a7;
+      --line: rgba(255,255,255,0.08);
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #0b1220, #111b2b 40%, #17273d);
+      color: var(--text);
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+      padding: 24px;
+    }
+
+    .slide {
+      width: 100%;
+      max-width: 1280px;
+      margin: 0 auto 36px auto;
+      border: 1px solid var(--line);
+      background: rgba(12, 18, 28, 0.88);
+      border-radius: 18px;
+      padding: 42px 52px;
+      box-shadow: 0 18px 50px rgba(0,0,0,0.25);
+    }
+
+    .cover {
+      min-height: 720px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at top left, rgba(74,163,255,0.18), transparent 30%),
+                  radial-gradient(circle at bottom right, rgba(36,194,161,0.18), transparent 25%);
+    }
+
+    .cover-inner {
+      width: 100%;
+      max-width: 1100px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      font-size: 14px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: bold;
+      margin-bottom: 18px;
+    }
+
+    h1, h2, h3, h4 {
+      margin: 0 0 16px 0;
+      line-height: 1.1;
+    }
+
+    h1 {
+      font-size: 56px;
+      letter-spacing: -0.04em;
+    }
+
+    h2 {
+      font-size: 38px;
+      letter-spacing: -0.03em;
+      margin-bottom: 18px;
+    }
+
+    h3 {
+      font-size: 24px;
+      margin-bottom: 12px;
+    }
+
+    p, li {
+      color: var(--muted);
+      font-size: 19px;
+      line-height: 1.6;
+    }
+
+    .sub {
+      font-size: 24px;
+      max-width: 880px;
+      color: var(--muted);
+      margin-top: 18px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1.05fr 1fr;
+      gap: 22px;
+      margin-top: 18px;
+    }
+
+    .card {
+      background: linear-gradient(180deg, rgba(23,39,61,0.9), rgba(18,29,45,0.9));
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 20px 22px;
+    }
+
+    .kpis {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(160px, 1fr));
+      gap: 18px;
+      margin-top: 24px;
+    }
+
+    .kpi {
+      background: rgba(18,29,45,0.92);
+      border: 1px solid var(--line);
+      border-left: 4px solid var(--accent);
+      border-radius: 14px;
+      padding: 20px 18px;
+    }
+
+    .kpi strong {
+      display: block;
+      font-size: 30px;
+      margin-bottom: 6px;
+      color: var(--text);
+    }
+
+    .kpi span {
+      font-size: 15px;
+      color: var(--muted);
+    }
+
+    ul {
+      margin: 18px 0 0 18px;
+      padding: 0;
+    }
+
+    .highlight {
+      color: var(--text);
+      font-weight: bold;
+    }
+
+    .pill {
+      display: inline-block;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: rgba(36,194,161,0.12);
+      border: 1px solid rgba(36,194,161,0.4);
+      color: var(--success);
+      font-size: 14px;
+      margin-right: 8px;
+      margin-bottom: 10px;
+    }
+
+    .two-col-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .list-box {
+      background: var(--panel-2);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 16px 18px;
+    }
+
+    .table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 18px;
+      font-size: 18px;
+      border: 1px solid var(--line);
+      overflow: hidden;
+      border-radius: 12px;
+    }
+
+    .table th, .table td {
+      padding: 14px 16px;
+      text-align: left;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .table th {
+      background: rgba(36,194,161,0.08);
+      color: var(--text);
+    }
+
+    .table td {
+      color: var(--muted);
+      background: rgba(18,29,45,0.3);
+    }
+
+    .footer {
+      margin-top: 32px;
+      padding-top: 18px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    @media (max-width: 900px) {
+      .grid-2,
+      .two-col-list,
+      .kpis {
+        grid-template-columns: 1fr;
+      }
+
+      h1 { font-size: 42px; }
+      h2 { font-size: 30px; }
+      .slide { padding: 28px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <section class="slide cover">
+    <div class="cover-inner">
+      <div class="eyebrow">CantuStore • BI & Inteligência de Mercado</div>
+      <h1>Análise de Carrinho Abandonado</h1>
+      <p class="sub">
+        Modelagem em Fato e Dimensão, indicadores estratégicos e dashboard para apoiar decisões de conversão, produto e região.
+      </p>
+      <div style="margin-top: 28px;">
+        <span class="pill">Carrinho abandonado</span>
+        <span class="pill">Produtos e regiões</span>
+        <span class="pill">Valor não faturado</span>
+        <span class="pill">Dashboard executivo</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide">
+    <div class="eyebrow">Contexto</div>
+    <h2>Problema de negócio</h2>
+    <div class="grid-2">
+      <div class="card">
+        <p>
+          O <span class="highlight">carrinho abandonado</span> representa uma perda crítica de conversão. Após o cliente escolher produtos, ele deixa a etapa final sem concluir compra, gerando impacto em receita, retenção e comportamento de compra.
+        </p>
+      </div>
+      <div class="card">
+        <p>
+          A empresa precisa responder perguntas como:
+        </p>
+        <ul>
+          <li>Quais produtos mais geram abandono?</li>
+          <li>Quais estados e regiões têm maior desistência?</li>
+          <li>Quanto valor deixou de ser faturado?</li>
+          <li>Produtos novos têm baixa conversão no primeiro mês?</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide">
+    <div class="eyebrow">Objetivos</div>
+    <h2>Metas da análise</h2>
+    <div class="kpis">
+      <div class="kpi">
+        <strong>Produtos</strong>
+        <span>Identificar os itens mais abandonados</span>
+      </div>
+      <div class="kpi">
+        <strong>Parcerias</strong>
+        <span>Descobrir combinações mais frequentes</span>
+      </div>
+      <div class="kpi">
+        <strong>Regiões</strong>
+        <span>Mapear estados e padrões geográficos</span>
+      </div>
+      <div class="kpi">
+        <strong>Financeiro</strong>
+        <span>Quantificar valor não faturado</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide">
+    <div class="eyebrow">Arquitetura</div>
+    <h2>Modelo de dados em Fato e Dimensão</h2>
+    <div class="two-col-list">
+      <div class="list-box">
+        <h3>Fato</h3>
+        <ul>
+          <li><span class="highlight">fato_carrinho_abandonado</span></li>
+          <li>carrinho_id</li>
+          <li>produto_id</li>
+          <li>cliente_id</li>
+          <li>regiao_id</li>
+          <li>data_abandono_id</li>
+          <li>valor_nao_faturado</li>
+          <li>quantidade_itens</li>
+        </ul>
+      </div>
+      <div class="list-box">
+        <h3>Dimensões</h3>
+        <ul>
+          <li>dim_produto</li>
+          <li>dim_cliente</li>
+          <li>dim_regiao</li>
+          <li>dim_data</li>
+          <li>dim_pagamento</li>
+          <li>dim_carrinho</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide">
+    <div class="eyebrow">Indicadores</div>
+    <h2>KPIs e métricas principais</h2>
+    <ul>
+      <li>Quantidade de <span class="highlight">carrinhos abandonados</span></li>
+      <li>Quantidade de <span class="highlight">itens abandonados</span></li>
+      <li>Valor <span class="highlight">não faturado</span> por produto, mês e data</li>
+      <li>Top produtos por abandono e crescimento de desistência</li>
+      <li>Estados e regiões com maior volume de abandono</li>
+      <li>Produtos novos no primeiro mês de lançamento</li>
+    </ul>
+  </section>
+
+  <section class="slide">
+    <div class="eyebrow">Perguntas de negócio</div>
+    <h2>Principais questionamentos respondidos</h2>
+    <div class="two-col-list">
+      <div class="list-box">
+        <ul>
+          <li>Quais produtos tiveram mais carrinhos abandonados?</li>
+          <li>Quais pares de produtos aparecem juntos?</li>
+          <li>Quais produtos tiveram aumento de abandono?</li>
+          <li>Quais estados tiveram mais abandonos?</li>
+        </ul>
+      </div>
+      <div class="list-box">
+        <ul>
+          <li>Qual o valor não faturado mensal?</li>
+          <li>Qual o relatório por data?</li>
+          <li>Quais produtos novos tiveram rejeição no primeiro mês?</li>
+          <li>Há comportamento recorrente por categoria?</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide">
+    <div class="eyebrow">Dashboard</div>
+    <h2>Estrutura sugerida para o painel</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Seção</th>
+          <th>Visual</th>
+          <th>Objetivo</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Execução</td>
+          <td>KPIs e cards</td>
+          <td>Resumo rápido do cenário</td>
+        </tr>
+        <tr>
+          <td>Produtos</td>
+          <td>Barra e ranking</td>
+          <td>Top itens abandonados</td>
+        </tr>
+        <tr>
+          <td>Temporal</td>
+          <td>Linha por mês/dia</td>
+          <td>Variação e tendência</td>
+        </tr>
+        <tr>
+          <td>Geografia</td>
+          <td>Mapa por UF</td>
+          <td>Estados com maior desistência</td>
+        </tr>
+        <tr>
+          <td>Produtos novos</td>
+          <td>Tabela e comportamento</td>
+          <td>Primeiro mês de lançamento</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="slide">
+    <div class="eyebrow">Impacto do negócio</div>
+    <h2>O que a solução entrega</h2>
+    <ul>
+      <li>Maior <span class="highlight">visibilidade</span> do problema de conversão</li>
+      <li>Priorização de produtos e regiões com maior impacto</li>
+      <li>Redução do valor <span class="highlight">não faturado</span></li>
+      <li>Entendimento mais profundo do comportamento do cliente</li>
+      <li>Base para decisões em marketing, produto, logística e operação</li>
+    </ul>
+  </section>
+
+  <section class="slide">
+    <div class="eyebrow">Conclusão</div>
+    <h2>Resultado esperado</h2>
+    <p>
+      A análise de carrinho abandonado permite transformar um problema operacional em uma ação estratégica. Com o modelo correto, o time de negócio consegue priorizar medidas de conversão, reduzir perdas financeiras e agir com base em evidências.
+    </p>
+    <div class="footer">
+      CantuStore • Projeto de BI e Análise de Carrinho Abandonado
+    </div>
+  </section>
+
+</body>
+</html>
