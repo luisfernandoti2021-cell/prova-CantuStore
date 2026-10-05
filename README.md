@@ -4,20 +4,20 @@
 
 Este projeto foi desenvolvido como parte da minha prova de **Analista de Dados e BI** para a **CantuStore**. O objetivo foi resolver um problema real do e-commerce: entender por que os clientes abrem o carrinho, selecionam produtos e não concluem a compra.
 
-A partir da estrutura de dados fornecida, desenvolvi uma solução completa de análise, desde a modelagem dimensional até a proposta e entrega de um dashboard executivo capaz de responder às perguntas de negócio mais relevantes da área responsável.
+A partir da estrutura de dados fornecida, desenvolvi uma solução completa de análise, começando pela modelagem dimensional e seguindo até a entrega de um dashboard executivo capaz de responder às perguntas mais relevantes da área responsável.
 
 ---
 
 ## Problema de negócio
 
-O carrinho abandonado é um dos indicadores mais críticos em e-commerce porque representa intenção de compra que foi interrompida antes da conversão. Em um negócio como a CantuStore, isso impacta diretamente:
+O carrinho abandonado é um dos principais indicadores de perda de conversão em e-commerce. Em um negócio como a CantuStore, esse problema afeta diretamente:
 
 - volume de vendas;
 - receita potencial perdida;
 - experiência de compra;
 - desempenho de produtos e categorias;
 - eficiência operacional e logística;
-- percepção de valor no canal digital.
+- percepção de valor do canal digital.
 
 A análise foi pensada para responder onde a conversão está sendo perdida e como isso se distribui por produto, região, tempo e comportamento do cliente.
 
@@ -30,11 +30,11 @@ A entrega final inclui:
 - modelagem em **Fato e Dimensão**;
 - scripts SQL para criação das tabelas e carga inicial de dados;
 - consultas analíticas para responder às perguntas de negócio;
-- dashboard visual executável em formato de mockup HTML;
+- dashboard visual em mockup HTML para apresentação e exportação;
 - documentação técnica e de negócio;
-- apresentação estruturada para suporte da entrega final.
+- estrutura preparada para apresentação final da solução.
 
-Em outras palavras: a solução foi construída para responder diretamente às exigências da prova e do cliente, e não apenas para descrever uma proposta teórica.
+Esta entrega foi construída para responder diretamente às exigências da prova e do cliente, e não apenas para descrever uma proposta teórica.
 
 ---
 
@@ -58,7 +58,7 @@ Essa estrutura foi escolhida porque:
 
 - facilita agregação por categoria, região, período e produto;
 - melhora a leitura do dashboard para o usuário final;
-- reduz complexidade de joins em consultas analíticas;
+- reduz a complexidade de joins em consultas analíticas;
 - deixa a solução fácil de evoluir conforme o volume de dados cresce.
 
 ### 3. Estrutura analítica
@@ -69,16 +69,16 @@ Essa estrutura foi escolhida porque:
 
 Essa tabela concentra as métricas principais relacionadas ao abandono, como:
 
-- carrinho_id
-- produto_id
-- cliente_id
-- regiao_id
-- data_abandono_id
-- pagamento_id
-- quantidade_itens
-- valor_total_produtos
-- valor_nao_faturado
-- flag_abandonado
+- `carrinho_id`
+- `produto_id`
+- `cliente_id`
+- `regiao_id`
+- `data_abandono_id`
+- `pagamento_id`
+- `quantidade_itens`
+- `valor_total_produtos`
+- `valor_nao_faturado`
+- `flag_abandonado`
 
 #### Dimensões
 
@@ -93,7 +93,7 @@ Essa tabela concentra as métricas principais relacionadas ao abandono, como:
 
 ## Indicadores principais entregues
 
-A solução responde diretamente às seguintes análises de negócio:
+A solução responde diretamente às seguintes analises de negócio:
 
 1. Quais produtos tiveram mais carrinhos abandonados?
 2. Quais pares de produtos aparecem juntos com mais frequência?
@@ -107,62 +107,47 @@ A solução responde diretamente às seguintes análises de negócio:
 
 ## Dashboard entregue
 
-A estrutura do dashboard foi desenvolvida para atender os principais critérios da prova e do cliente.
+A estrutura do dashboard foi desenvolvida para atender aos principais critérios da prova e do cliente.
 
-### Visão executiva
+### Observação importante sobre os dados de exemplo
+
+Os números apresentados no mockup do dashboard (carrinhos abandonados, itens abandonados, valores não faturados, etc.) são **valores ilustrativos utilizados exclusivamente para demonstração visual da solução**.
+
+Esses números foram gerados a partir da carga de dados de exemplo (`sql/02_load_exemplo.sql`) e podem ser verificados executando as queries em `sql/03_queries_dashboard.sql`.
+
+Para dados reais da CantuStore, execute:
+1. `sql/01_create_dimensoes.sql` (criar tabelas)
+2. Carregue os dados reais da operação
+3. Execute `sql/03_queries_dashboard.sql` (todas as 8 queries)
+
+Os resultados retornarão os valores reais da base de dados.
+
+### Visão executiva (exemplo com dados ilustrativos)
 
 ```
 ┌──────────────────────────────────────────────────────────────┐
 │                CARRINHO ABANDONADO - RESUMO               │
 ├──────────────────────────────────────────────────────────────┤
 │  KPI 1: Carrinhos abandonados      KPI 2: Itens abandonados │
-│  2.847                             5.234                   │
+│  [resultado da query 8]            [resultado da query 8]  │
 │                                                            │
 │  KPI 3: Valor não faturado         KPI 4: Produtos críticos│
-│  R$ 892.456                        Top 10 produtos          │
+│  [resultado da query 8]            [resultado da query 1]  │
 └──────────────────────────────────────────────────────────────┘
 ```
 
-### Top produtos por abandono
+### Estrutura do dashboard proposto
 
-```
-Pneu Aro 17 (SUV)        ████████████████████ 287
-Pneu Aro 15 (Passeio)    ████████████████ 215
-Kit Alinhamento          ███████████ 156
-Pneu Aro 18 (Premium)    ████████████ 174
-Válvula de Pneu          ████████ 98
-```
+O dashboard foi estruturado para responder às 7 perguntas de negócio através de 8 queries:
 
-### Abandono por estado
-
-```
-São Paulo (SP)          ████████████████████ 456
-Rio de Janeiro (RJ)     ████████████ 287
-Minas Gerais (MG)       ██████████ 245
-Paraná (PR)             ████████ 198
-Bahia (BA)              ██████ 156
-```
-
-### Tendência mensal
-
-```
-   R$900K ┤        ╱╲       ╱╲
-          │       ╱  ╲     ╱  ╲
-   R$800K ┤      ╱    ╲   ╱    ╲
-          │     ╱      ╲ ╱      ╲
-   R$700K ┤    ╱        ╲        ╲
-          └────────────────────────────
-             Jan   Fev   Mar   Abr   Mai
-```
-
-### Preview visual disponibilizado
-
-O dashboard visual foi entregue em mockup HTML para permitir visualização direta no navegador, com exportação para PDF ou uso como base para apresentação.
-
-- `dashboard/dashboard-preview.html`
-- `slides/cantustore-deck.html`
-
-Esses arquivos foram criados para representar a proposta final do painel executivo com foco em vizualização das principais métricas da análise.
+1. Query 1: Top produtos por abandono
+2. Query 2: Duplas de produtos mais abandonadas
+3. Query 3: Produtos com aumento de abandono
+4. Query 4: Produtos novos no primeiro mês
+5. Query 5: Estados com mais abandonos
+6. Query 6: Relatório produto x mês
+7. Query 7: Relatório por data
+8. Query 8: Resumo executivo
 
 ---
 
@@ -199,19 +184,27 @@ prova-CantuStore/
 
 ### 1. Modelagem no SQL
 Crie as tabelas com:
-- `sql/01_create_dimensoes.sql`
+```sql
+-- Executar: sql/01_create_dimensoes.sql
+```
 
-### 2. Carregue dados iniciais
-- `sql/02_load_exemplo.sql`
+### 2. Carregue dados iniciais (ou seus dados reais)
+```sql
+-- Executar: sql/02_load_exemplo.sql
+-- Ou, para dados reais, faça um INSERT a partir da sua base operacional
+```
 
 ### 3. Execute as consultas analíticas
-- `sql/03_queries_dashboard.sql`
+```sql
+-- Executar: sql/03_queries_dashboard.sql
+-- Isso retornará os 8 resultados que alimentam o dashboard
+```
 
-### 4. Visualize o dashboard
-- `dashboard/dashboard-preview.html`
-- `slides/cantustore-deck.html`
+### 4. Visualize o dashboard mockado
+- `dashboard/dashboard-preview.html` (abrir no navegador)
+- `slides/cantustore-deck.html` (apresentação)
 
-Esses arquivos mostram a entrega visual da solução e servem como base para apresentação final e exportação em PDF.
+Esses arquivos mostram a estrutura visual final e servem como base para implementação em Power BI ou Looker Studio.
 
 ---
 
@@ -226,10 +219,10 @@ Ele permite:
 - visualização mais clara para negócio;
 - agregações por produto, data, região e categoria;
 - escalabilidade para dados maiores;
-- maior qualidade na manutenção do modelo analítico.
+- manutenção mais simples e sustentável.
 
 ### Por que focar em valor não faturado?
-Porque abandonar um carrinho não é só um problema de volume: é também um problema de receita perdida. Esse indicador é estratégico porque mostra o impacto financeiro real da desistência.
+Porque abandonar um carrinho não é só um problema de volume; é também um problema de receita perdida. Esse indicador é estratégico porque mostra o impacto financeiro real da desistência.
 
 ### Por que separar produtos novos?
 Porque produtos recém-lançados costumam ter comportamento diferente de itens já consolidados. A análise do primeiro mês é essencial para avaliar aceitação, percepção de valor e conversão inicial.
