@@ -2,59 +2,72 @@
 
 ## Sobre este projeto
 
-Este projeto foi desenvolvido como parte da minha prova de **Analista de Dados e BI** para a **CantuStore**. A ideia central era resolver um problema real do e-commerce: entender por que os clientes estão abrindo o carrinho, buscando produtos e desistindo antes da compra finalizada.
+Este projeto foi desenvolvido como parte da minha prova de **Analista de Dados e BI** para a **CantuStore**. O objetivo foi resolver um problema real do e-commerce: entender por que os clientes abrem o carrinho, selecionam produtos e não concluem a compra.
 
-A partir daí, eu estruturei uma solução completa de análise, começando pela modelagem de dados e chegando na proposta de dashboard executivo para apoiar decisões de negócio.
+A partir da estrutura de dados fornecida, desenvolvi uma solução completa de análise, desde a modelagem dimensional até a proposta e entrega de um dashboard executivo capaz de responder às perguntas de negócio mais relevantes da área responsável.
 
 ---
 
-## O problema de negócio
+## Problema de negócio
 
-No e-commerce, o carrinho abandonado é um dos indicadores mais importantes porque mostra uma etapa em que o cliente já teve intenção de compra, mas não concluiu a ação. Isso gera impacto direto em:
+O carrinho abandonado é um dos indicadores mais críticos em e-commerce porque representa intenção de compra que foi interrompida antes da conversão. Em um negócio como a CantuStore, isso impacta diretamente:
 
 - volume de vendas;
 - receita potencial perdida;
-- percepção da experiência de compra;
-- performance de produtos e regiões;
-- eficiência da operação logística e comercial.
+- experiência de compra;
+- desempenho de produtos e categorias;
+- eficiência operacional e logística;
+- percepção de valor no canal digital.
 
-Para a CantuStore, isso tem relevância ainda maior porque o negócio trabalha com uma operação que envolve produto, logística, tecnologia e decisão de compra em um cenário competitivo.
+A análise foi pensada para responder onde a conversão está sendo perdida e como isso se distribui por produto, região, tempo e comportamento do cliente.
 
 ---
 
-## Minha abordagem
+## Entrega desenvolvida
 
-### 1. Entender o problema com foco em negócio
-Antes de montar consultas, eu me perguntei o que o time de negócio realmente precisava responder:
+A entrega final inclui:
 
-- Quais produtos geram mais carrinhos abandonados?
-- Quais produtos aparecem juntos com mais frequência?
-- Quais períodos tiveram aumento na desistência?
-- Quais estados representam maior volume de abandono?
-- Qual é o impacto financeiro em valor não faturado?
-- Há produtos novos com baixa conversão no primeiro mês?
+- modelagem em **Fato e Dimensão**;
+- scripts SQL para criação das tabelas e carga inicial de dados;
+- consultas analíticas para responder às perguntas de negócio;
+- dashboard visual executável em formato de mockup HTML;
+- documentação técnica e de negócio;
+- apresentação estruturada para suporte da entrega final.
 
-### 2. Definir a estrutura correta dos dados
+Em outras palavras: a solução foi construída para responder diretamente às exigências da prova e do cliente, e não apenas para descrever uma proposta teórica.
+
+---
+
+## Abordagem adotada
+
+### 1. Entendimento do problema
+Antes de iniciar a modelagem, identifiquei as perguntas mais importantes para o negócio:
+
+- Quais produtos tiveram mais carrinhos abandonados?
+- Quais combinações de produtos aparecem juntas com mais frequência?
+- Quais produtos tiveram aumento de abandono ao longo do tempo?
+- Quais produtos novos tiveram pior desempenho no primeiro mês?
+- Quais estados apresentam maior volume de desistência?
+- Qual foi o impacto financeiro em valor não faturado?
+- Como o comportamento evoluiu por mês e por data?
+
+### 2. Modelo dimensional
 A melhor forma de responder isso em BI é usar o modelo **Fato e Dimensão**.
 
-Essa abordagem facilita:
-- agregação por categoria, mês, estado e produto;
-- comparações temporais;
-- criação de KPIs claros;
-- dashboard mais fácil para o usuário final.
+Essa estrutura foi escolhida porque:
 
-### 3. Criar a base analítica para tomada de decisão
-A solução foi pensada para responder não só o que aconteceu, mas também por que isso está acontecendo e onde o time deve agir.
+- facilita agregação por categoria, região, período e produto;
+- melhora a leitura do dashboard para o usuário final;
+- reduz complexidade de joins em consultas analíticas;
+- deixa a solução fácil de evoluir conforme o volume de dados cresce.
 
----
+### 3. Estrutura analítica
 
-## Modelagem adotada
-
-### Tabela fato
+#### Tabela fato
 
 - `fato_carrinho_abandonado`
 
-Essa é a tabela central da análise, concentrando as métricas mais importantes do problema:
+Essa tabela concentra as métricas principais relacionadas ao abandono, como:
 
 - carrinho_id
 - produto_id
@@ -67,7 +80,7 @@ Essa é a tabela central da análise, concentrando as métricas mais importantes
 - valor_nao_faturado
 - flag_abandonado
 
-### Dimensões
+#### Dimensões
 
 - `dim_produto`
 - `dim_cliente`
@@ -76,40 +89,38 @@ Essa é a tabela central da análise, concentrando as métricas mais importantes
 - `dim_pagamento`
 - `dim_carrinho`
 
-Essa estrutura foi escolhida para facilitar as perguntas do negócio e deixar o dashboard mais eficiente e sustentável.
-
 ---
 
-## Indicadores principais
+## Indicadores principais entregues
 
-A análise foi organizada para responder às seguintes perguntas:
+A solução responde diretamente às seguintes análises de negócio:
 
-1. Quais produtos mais tiveram carrinhos abandonados?
-2. Quais duplas de produtos aparecem juntas com mais frequência?
-3. Quais produtos tiveram aumento de abandono em relação ao mês anterior?
-4. Quais os produtos novos e a quantidade de carrinhos no primeiro mês de lançamento?
+1. Quais produtos tiveram mais carrinhos abandonados?
+2. Quais pares de produtos aparecem juntos com mais frequência?
+3. Quais produtos aumentaram o abandono em relação ao mês anterior?
+4. Quais produtos novos tiveram maior número de carrinhos abandonados no primeiro mês?
 5. Quais estados tiveram mais abandonos?
-6. Qual foi o valor não faturado total e por produto?
-7. Como o comportamento evoluiu mês a mês e por data?
+6. Qual foi o valor total não faturado?
+7. Como os indicadores evoluíram por mês e por data?
 
 ---
 
-## Dashboard proposto
+## Dashboard entregue
 
-A estrutura do dashboard foi pensada para atender o negócio em diferentes níveis de análise.
+A estrutura do dashboard foi desenvolvida para atender os principais critérios da prova e do cliente.
 
 ### Visão executiva
 
 ```
-┌───────────────────────────────────────────────────────────────┐
-│                CARRINHO ABANDONADO - RESUMO                 │
-├───────────────────────────────────────────────────────────────┤
-│  KPI 1: Carrinhos abandonados      KPI 2: Itens abandonados  │
-│  2.847                             5.234                     │
-│                                                             │
-│  KPI 3: Valor não faturado         KPI 4: Produtos críticos │
+┌──────────────────────────────────────────────────────────────┐
+│                CARRINHO ABANDONADO - RESUMO               │
+├──────────────────────────────────────────────────────────────┤
+│  KPI 1: Carrinhos abandonados      KPI 2: Itens abandonados │
+│  2.847                             5.234                   │
+│                                                            │
+│  KPI 3: Valor não faturado         KPI 4: Produtos críticos│
 │  R$ 892.456                        Top 10 produtos          │
-└───────────────────────────────────────────────────────────────┘
+└──────────────────────────────────────────────────────────────┘
 ```
 
 ### Top produtos por abandono
@@ -132,7 +143,7 @@ Paraná (PR)             ████████ 198
 Bahia (BA)              ██████ 156
 ```
 
-### Tendência mensal do abandono
+### Tendência mensal
 
 ```
    R$900K ┤        ╱╲       ╱╲
@@ -144,9 +155,18 @@ Bahia (BA)              ██████ 156
              Jan   Fev   Mar   Abr   Mai
 ```
 
+### Preview visual disponibilizado
+
+O dashboard visual foi entregue em mockup HTML para permitir visualização direta no navegador, com exportação para PDF ou uso como base para apresentação.
+
+- `dashboard/dashboard-preview.html`
+- `slides/cantustore-deck.html`
+
+Esses arquivos foram criados para representar a proposta final do painel executivo com foco em vizualização das principais métricas da análise.
+
 ---
 
-## Arquivos do projeto
+## Estrutura do repositório
 
 ```
 prova-CantuStore/
@@ -155,21 +175,22 @@ prova-CantuStore/
 │   ├── arquitetura_modelagem.md
 │   ├── relatorio_negocio.md
 │   ├── versao_execucao_bi.md
-│   └── versao_apresentacao_entrevista.md
+│   ├── versao_apresentacao_entrevista.md
+│   └── versao_final_entrega.md
 ├── sql/
 │   ├── 01_create_dimensoes.sql
 │   ├── 02_load_exemplo.sql
 │   └── 03_queries_dashboard.sql
 ├── dashboard/
 │   ├── README.md
-│   ├── looker-studio-setup.md
-│   ├── powerbi-dashboard-concept.html
-│   └── dashboard-preview.html
+│   ├── dashboard-preview.html
+│   └── powerbi-dashboard-concept.html
 ├── slides/
 │   └── cantustore-deck.html
 ├── data/
 │   └── README.md
-└── .gitignore
+├── .gitignore
+└── LICENSE
 ```
 
 ---
@@ -180,64 +201,67 @@ prova-CantuStore/
 Crie as tabelas com:
 - `sql/01_create_dimensoes.sql`
 
-### 2. Carregue dados de exemplo
+### 2. Carregue dados iniciais
 - `sql/02_load_exemplo.sql`
 
 ### 3. Execute as consultas analíticas
 - `sql/03_queries_dashboard.sql`
 
-### 4. Dashboard
-- A estrutura de dashboard está em `dashboard/README.md`
-- O guia para o Looker Studio está em `dashboard/looker-studio-setup.md`
-- A versão visual de mockup está em `dashboard/dashboard-preview.html`
-- A versão conceitual de Power BI está em `dashboard/powerbi-dashboard-concept.html`
+### 4. Visualize o dashboard
+- `dashboard/dashboard-preview.html`
+- `slides/cantustore-deck.html`
+
+Esses arquivos mostram a entrega visual da solução e servem como base para apresentação final e exportação em PDF.
 
 ---
 
 ## Decisões técnicas importantes
 
 ### Por que Fato e Dimensão?
-Porque esse é o padrão mais adequado para soluções analíticas com foco em BI e relatórios executivos.
+Porque esse é o padrão mais adequado para BI e dashboards executivos.
 
 Ele permite:
-- consultas mais simples e mais rápidas;
-- visualizações intuitivas;
-- facilidade de evoluir para novos indicadores;
-- melhor entendimento do contexto em que a operação está acontecendo.
+
+- consultas mais rápidas;
+- visualização mais clara para negócio;
+- agregações por produto, data, região e categoria;
+- escalabilidade para dados maiores;
+- maior qualidade na manutenção do modelo analítico.
 
 ### Por que focar em valor não faturado?
-Porque o abandono de carrinho não é apenas um problema de quantidade; ele também tem um impacto financeiro claro. O valor perdido, por produto, região e período, é uma métrica que fala diretamente ao negócio.
+Porque abandonar um carrinho não é só um problema de volume: é também um problema de receita perdida. Esse indicador é estratégico porque mostra o impacto financeiro real da desistência.
 
-### Por que analisar produtos novos separadamente?
-Porque produtos recém-lançados costumam ter comportamento diferente. Uma análise de abandono no primeiro mês pode indicar se a adoção inicial está saudável ou se há algum problema de posicionamento, preço ou percepção de valor.
+### Por que separar produtos novos?
+Porque produtos recém-lançados costumam ter comportamento diferente de itens já consolidados. A análise do primeiro mês é essencial para avaliar aceitação, percepção de valor e conversão inicial.
 
 ---
 
 ## Principais insights esperados
 
-Com essa estrutura, a empresa passa a ter respostas para:
+Com a modelagem e o dashboard entregues, a empresa consegue responder:
 
 - quais produtos mais exigem atenção;
-- quais produtos precisam de campanha ou incentivo;
-- quais regiões demandam ações de logística ou frete;
-- que produtos estão sendo abandonados juntos;
-- onde há maior perda financeira;
+- quais itens devem receber campanha ou incentivo;
+- quais regiões precisam de atenção em logística e frete;
+- quais produtos aparecem juntos com mais frequência em carrinhos abandonados;
+- quanto a operação está deixando de faturar;
 - se o problema está se agravando ao longo do tempo.
 
 ---
 
 ## Conclusão
 
-Este projeto foi estruturado para ser uma solução realista de análise de e-commerce, com foco em business intelligence e tomada de decisão. Ele demonstra que eu consegui:
+Este projeto foi desenvolvido para ser uma solução prática, estruturada e analítica, com foco em tomada de decisão. Ele demonstra que foi possível:
 
 - entender o problema de negócio;
 - modelar corretamente os dados;
-- transformar o dado em indicadores de valor;
-- pensar em dashboard e em visualização analítica.
+- transformar o dado em indicadores relevantes;
+- estruturar um dashboard executivo capaz de responder às perguntas da área responsável;
+- entregar uma solução coerente para uma prova de Analista de Dados e BI.
 
-O objetivo foi criar uma base analítica sólida, capaz de responder as perguntas estratégicas da área responsável e apoiar ações de melhoria na conversão.
+A proposta é funcional, clara e alinhada ao contexto da CantuStore.
 
 ---
 
 **Desenvolvido como projeto pessoal para a prova de Analista de Dados e BI da CantuStore**
-**Link do repositório:** https://github.com/luisfernandoti2021-cell/prova-CantuStore
+**Repositório:** https://github.com/luisfernandoti2021-cell/prova-CantuStore
