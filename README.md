@@ -30,7 +30,7 @@ A entrega final inclui:
 - modelagem em **Fato e Dimensão**;
 - scripts SQL para criação das tabelas e carga inicial de dados;
 - consultas analíticas para responder às perguntas de negócio;
-- dashboard visual em mockup HTML para apresentação e exportação;
+- **dashboard visual entregue em HTML** para apresentação e exportação;
 - documentação técnica e de negócio;
 - estrutura preparada para apresentação final da solução.
 
@@ -93,7 +93,7 @@ Essa tabela concentra as métricas principais relacionadas ao abandono, como:
 
 ## Indicadores principais entregues
 
-A solução responde diretamente às seguintes analises de negócio:
+A solução responde diretamente às seguintes análises de negócio:
 
 1. Quais produtos tiveram mais carrinhos abandonados?
 2. Quais pares de produtos aparecem juntos com mais frequência?
@@ -107,7 +107,20 @@ A solução responde diretamente às seguintes analises de negócio:
 
 ## Dashboard entregue
 
-A estrutura do dashboard foi desenvolvida para atender aos principais critérios da prova e do cliente.
+O dashboard foi desenvolvido e está disponível no repositório em formato visual para análise executiva dos principais indicadores de carrinho abandonado.
+
+### Arquivo entregue
+
+- `dashboard/dashboard-preview.html`
+
+Esse arquivo representa a entrega visual da solução e contempla:
+
+- KPIs principais;
+- top produtos por abandono;
+- evolução temporal;
+- análise geográfica;
+- duplas de produtos mais abandonadas;
+- produtos novos e primeiro mês de lançamento.
 
 ### Observação importante sobre os dados de exemplo
 
@@ -136,7 +149,7 @@ Os resultados retornarão os valores reais da base de dados.
 └──────────────────────────────────────────────────────────────┘
 ```
 
-### Estrutura do dashboard proposto
+### Estrutura do dashboard entregue
 
 O dashboard foi estruturado para responder às 7 perguntas de negócio através de 8 queries:
 
@@ -200,7 +213,7 @@ Crie as tabelas com:
 -- Isso retornará os 8 resultados que alimentam o dashboard
 ```
 
-### 4. Visualize o dashboard mockado
+### 4. Visualize o dashboard entregue
 - `dashboard/dashboard-preview.html` (abrir no navegador)
 - `slides/cantustore-deck.html` (apresentação)
 
