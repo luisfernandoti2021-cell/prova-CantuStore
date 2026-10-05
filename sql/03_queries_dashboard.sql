@@ -1,3 +1,8 @@
+-- =====================================================
+-- Projeto: CantuStore - Carrinho Abandonado
+-- Objetivo: responder as perguntas de negócio da área
+-- =====================================================
+
 -- 1. Produtos com maior número de carrinhos abandonados
 SELECT
     p.nome_produto,
@@ -37,8 +42,14 @@ SELECT
     nome_produto,
     mes_ano,
     qtd_carrinhos,
-    LAG(qtd_carrinhos) OVER (PARTITION BY nome_produto ORDER BY mes_ano) AS qtd_anterior,
-    qtd_carrinhos - LAG(qtd_carrinhos) OVER (PARTITION BY nome_produto ORDER BY mes_ano) AS variacao
+    LAG(qtd_carrinhos) OVER (
+        PARTITION BY nome_produto
+        ORDER BY mes_ano
+    ) AS qtd_anterior,
+    qtd_carrinhos - LAG(qtd_carrinhos) OVER (
+        PARTITION BY nome_produto
+        ORDER BY mes_ano
+    ) AS variacao
 FROM abandono_mes
 ORDER BY nome_produto, mes_ano;
 
@@ -49,8 +60,8 @@ SELECT
     COUNT(DISTINCT f.carrinho_id) AS qtd_carrinhos_abandonados
 FROM fato_carrinho_abandonado f
 JOIN dim_produto p ON p.produto_id = f.produto_id
-WHERE f.data_abandono_id BETWEEN 20240101 AND 20241231
-  AND p.data_lancamento IS NOT NULL
+WHERE p.data_lancamento IS NOT NULL
+  AND f.data_abandono_id BETWEEN 20240101 AND 20241231
 GROUP BY p.nome_produto, p.data_lancamento
 ORDER BY qtd_carrinhos_abandonados DESC;
 
@@ -89,3 +100,9 @@ JOIN dim_data d ON d.data_id = f.data_abandono_id
 GROUP BY d.data_completa
 ORDER BY d.data_completa ASC;
 
+-- 8. Resumo executivo do problema
+SELECT
+    COUNT(DISTINCT carrinho_id) AS total_carrinhos_abandonados,
+    SUM(quantidade_itens) AS total_itens_abandonados,
+    SUM(valor_nao_faturado) AS valor_nao_faturado_total
+FROM fato_carrinho_abandonado;
