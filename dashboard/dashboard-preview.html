@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CantuStore - Dashboard Preview</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #0d1725;
+      color: #edf3ff;
+    }
+    .page {
+      max-width: 1280px;
+      margin: 24px auto;
+      padding: 24px;
+      background: #101d2d;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    h1 {
+      margin: 0 0 16px 0;
+      font-size: 30px;
+    }
+    .kpis {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .card {
+      background: linear-gradient(180deg, #16273d, #101d2d);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+      padding: 18px;
+      min-height: 120px;
+    }
+    .label {
+      color: #a8c5e1;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .value {
+      margin-top: 12px;
+      font-size: 34px;
+      font-weight: 700;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 18px;
+    }
+    .panel {
+      background: linear-gradient(180deg, #16273d, #101d2d);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+      padding: 18px;
+    }
+    .bars {
+      display: flex;
+      height: 200px;
+      align-items: end;
+      gap: 12px;
+      padding-top: 16px;
+    }
+    .bar {
+      flex: 1;
+      background: linear-gradient(180deg, #4aa3ff, #24c2a1);
+      border-radius: 8px 8px 0 0;
+      position: relative;
+    }
+    .bar span {
+      position: absolute;
+      bottom: -24px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 11px;
+      color: #b9cadc;
+    }
+    .list {
+      list-style: none;
+      padding: 0;
+      margin: 16px 0 0 0;
+    }
+    .list li {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 12px;
+      color: #dfeaf8;
+      font-size: 15px;
+    }
+    .line {
+      height: 170px;
+      border-radius: 12px;
+      background:
+        linear-gradient(transparent 0 90%, rgba(255,255,255,0.08) 90%),
+        linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px);
+      position: relative;
+      overflow: hidden;
+    }
+    .line svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+    @media (max-width: 900px) {
+      .kpis, .grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <h1>CantuStore • Carrinho Abandonado</h1>
+
+    <div class="kpis">
+      <div class="card">
+        <div class="label">Carrinhos abandonados</div>
+        <div class="value">2.847</div>
+      </div>
+      <div class="card">
+        <div class="label">Itens abandonados</div>
+        <div class="value">5.234</div>
+      </div>
+      <div class="card">
+        <div class="label">Valor não faturado</div>
+        <div class="value">R$ 892k</div>
+      </div>
+      <div class="card">
+        <div class="label">Produtos críticos</div>
+        <div class="value">Top 10</div>
+      </div>
+    </div>
+
+    <div class="grid">
+      <div class="panel">
+        <h3>Top 10 produtos abandonados</h3>
+        <div class="bars">
+          <div class="bar" style="height: 80%;"><span>17</span></div>
+          <div class="bar" style="height: 70%;"><span>15</span></div>
+          <div class="bar" style="height: 60%;"><span>18</span></div>
+          <div class="bar" style="height: 54%;"><span>Kit</span></div>
+          <div class="bar" style="height: 48%;"><span>Válv.</span></div>
+          <div class="bar" style="height: 38%;"><span>Bal.</span></div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h3>Estados com mais abandono</h3>
+        <ul class="list">
+          <li><span>SP</span><strong>456</strong></li>
+          <li><span>RJ</span><strong>287</strong></li>
+          <li><span>MG</span><strong>245</strong></li>
+          <li><span>PR</span><strong>198</strong></li>
+          <li><span>BA</span><strong>156</strong></li>
+        </ul>
+      </div>
+    </div>
+
+    <div style="margin-top: 18px; display: grid; grid-template-columns: 1fr 1fr; gap: 18px;">
+      <div class="panel">
+        <h3>Tendência mensal</h3>
+        <div class="line">
+          <svg viewBox="0 0 500 170" preserveAspectRatio="none">
+            <path d="M0,130 C60,115 90,100 120,105 S180,95 210,78 S285,80 320,55 S380,30 430,50 S480,40 500,20" fill="none" stroke="#24c2a1" stroke-width="4"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h3>Duplas de produtos</h3>
+        <ul class="list">
+          <li><span>Pneu Aro 17 + Kit</span><strong>87</strong></li>
+          <li><span>Pneu Aro 15 + Válvula</span><strong>62</strong></li>
+          <li><span>Pneu Aro 18 + Balanceamento</span><strong>54</strong></li>
+          <li><span>Pneu Premium + Borda</span><strong>48</strong></li>
+          <li><span>Pneu Aro 17 + Aro 15</span><strong>61</strong></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

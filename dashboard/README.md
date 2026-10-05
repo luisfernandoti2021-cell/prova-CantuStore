@@ -1,77 +1,120 @@
-# Dashboard e visualizações
+# Guia de dashboard - Looker Studio / Power BI
 
-## Objetivo
+## Visão geral
 
-O painel deve permitir responder rapidamente às principais perguntas de negócio: abandono de carrinho, produtos impactados, regiões com maior volume e tendência temporal.
+A solução foi pensada para funcionar em dois formatos:
 
-## Visualizações sugeridas
+1. **Looker Studio** - mais simples de publicar e compartilhar online
+2. **Power BI** - mais robusto para análise corporativa e painéis executivos
 
-### 1. KPIs principais
+Como a prova pede um dashboard, a melhor forma é propor uma estrutura funcional em ambas as versões, mesmo que o modelo final seja implementado de acordo com a ferramenta disponível do cliente.
 
-- total de carrinhos abandonados;
-- total de itens abandonados;
-- valor não faturado;
-- média de itens por carrinho.
+---
 
-### 2. Top produtos
+## Estrutura do dashboard recomendado
 
-- gráfico de barras com os produtos mais abandonados;
-- gráfico com valor não faturado por produto;
-- filtro por categoria e mês.
+### 1. Página executiva
 
-### 3. Duplas de produtos
+- KPI de carrinhos abandonados
+- KPI de itens abandonados
+- KPI de valor não faturado
+- Top 10 produtos
+- Top 10 estados
 
-- tabela de top 10 pares de produtos que aparecem juntos;
-- pode ser representado em matriz ou gráfico de treemap.
+### 2. Página de produtos
 
-### 4. Tendências temporais
+- ranking por produto
+- análise de crescimento de abandono
+- comparação mensal
+- produtos novos e primeiro mês de lançamento
 
-- linha por mês;
-- linha por dia;
-- comparação com o mês anterior.
+### 3. Página geográfica
 
-### 5. Geografia
+- mapa por UF
+- ranking por estado
+- filtro por cidade/região
 
-- mapa por UF;
-- ranking de estados por abandonos.
+### 4. Página temporal
 
-### 6. Produtos novos
+- evolução diária e mensal
+- comparação com mês anterior
+- variação de valor não faturado
 
-- tabela com produto novo e volume no primeiro mês;
-- comparação com outros produtos do mesmo segmento.
+---
 
-## Estrutura de filtros
+## Métricas centrais
 
-- mês;
-- ano;
-- categoria;
-- produto;
-- estado;
-- metodo de pagamento;
-- status do carrinho.
+- `quantidade_carrinhos_abandonados`
+- `quantidade_itens_abandonados`
+- `valor_nao_faturado`
+- `taxa_abandono_por_produto`
+- `crescimento_abandono_mes`
 
-## Sugestão de visualização em Power BI
+---
 
-- página 1: visão executiva (KPI e top 10 produtos)
-- página 2: análise temporal (mês a mês)
-- página 3: geografia e estados
-- página 4: produtos novos e pares de produtos
+## Implementação em Looker Studio
 
-## Sugestão de visualização em Looker Studio
+### Conectores sugeridos
 
-- gráfico de barras para produtos mais abandonados;
-- gráfico de linha para tendência mensal;
-- mapa geográfico por UF;
-- tabela de top 10 produtos e top 10 pares; 
-- filtro por data e categoria.
+- BigQuery
+- PostgreSQL
+- Google Sheets (para protótipo leve)
 
-## Entregável final
+### Visualizações recomendadas
 
-O painel deve permitir que o usuário tenha resposta em segundos para as seguintes perguntas:
+- gráfico de barras - top produtos
+- gráfico de linha - tendência mensal
+- mapa geográfico - estados
+- tabela - produtos e valores
+- cards com KPIs principais
 
-- quais produtos mais tiveram carrinhos abandonados;
-- quais pares de produtos aparecem juntos em maior volume;
-- qual a evolução do abandono ao longo do tempo;
-- quais estados merecem atenção;
-- quanto o negócio deixou de faturar por produto e por período.
+### Filtros úteis
+
+- mês
+- produto
+- categoria
+- estado
+- data
+
+---
+
+## Implementação em Power BI
+
+### Estrutura visual sugerida
+
+- page 1: visão geral executiva
+- page 2: performance por produto
+- page 3: regiões e map visual
+- page 4: histórico temporal
+- page 5: análise de produtos novos
+
+### Indicadores sugeridos
+
+- total de carrinhos abandonados
+- total de itens abandonados
+- valor total perdido
+- crescimento do abandono por produto
+- comparação de meses e dados por estado
+
+### Modelagem recomendada
+
+- usar a tabela fato como eixo principal
+- estabelecer relações com as dimensões de produto, data e região
+- criar medidas DAX para:
+  - TotalCarrinhosAbandonados
+  - TotalItensAbandonados
+  - ValorNaoFaturado
+  - CrescimentoAbandono
+
+---
+
+## Dashboards mockados com visual profissional
+
+Como a prova não exige que o dashboard seja executado em produção, o melhor é deixar uma estrutura de dashboard em HTML com preview visual, além do guia para Power BI/Looker Studio.
+
+Essa abordagem deixa a entrega muito mais forte, pois mostra que o candidato entende:
+- a lógica analítica;
+- as métricas;
+- como as visões se conectam entre si;
+- qual é o painel executivo ideal para o cliente.
 
