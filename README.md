@@ -4,7 +4,7 @@
 
 Este projeto foi desenvolvido como parte da minha prova de **Analista de Dados e BI** para a **CantuStore**. O objetivo foi resolver um problema real do e-commerce: entender por que os clientes abrem o carrinho, selecionam produtos e não concluem a compra.
 
-A partir da estrutura de dados fornecida, desenvolvi uma solução completa de análise, começando pela modelagem dimensional e seguindo até a entrega de um dashboard executivo capaz de responder às perguntas mais relevantes da área responsável.
+A partir da estrutura de dados fornecida, desenvolvi uma solução completa de análise, começando pela modelagem dimensional e seguindo até a proposição de um dashboard executivo capaz de responder às principais perguntas de negócio da área responsável.
 
 ---
 
@@ -28,19 +28,18 @@ A análise foi pensada para responder onde a conversão está sendo perdida e co
 A entrega final inclui:
 
 - modelagem em **Fato e Dimensão**;
-- scripts SQL para criação das tabelas e carga inicial de dados;
+- scripts SQL para criação das tabelas e carga de dados;
 - consultas analíticas para responder às perguntas de negócio;
-- **dashboard visual entregue em HTML** para apresentação e exportação;
+- proposição de dashboard executivo;
 - documentação técnica e de negócio;
-- estrutura preparada para apresentação final da solução.
-
-Esta entrega foi construída para responder diretamente às exigências da prova e do cliente, e não apenas para descrever uma proposta teórica.
+- estrutura preparada para apresentação e implementação final da solução.
 
 ---
 
 ## Abordagem adotada
 
 ### 1. Entendimento do problema
+
 Antes de iniciar a modelagem, identifiquei as perguntas mais importantes para o negócio:
 
 - Quais produtos tiveram mais carrinhos abandonados?
@@ -52,6 +51,7 @@ Antes de iniciar a modelagem, identifiquei as perguntas mais importantes para o 
 - Como o comportamento evoluiu por mês e por data?
 
 ### 2. Modelo dimensional
+
 A melhor forma de responder isso em BI é usar o modelo **Fato e Dimensão**.
 
 Essa estrutura foi escolhida porque:
@@ -91,9 +91,9 @@ Essa tabela concentra as métricas principais relacionadas ao abandono, como:
 
 ---
 
-## Indicadores principais entregues
+## Indicadores principais
 
-A solução responde diretamente às seguintes análises de negócio:
+A análise foi organizada para responder às seguintes perguntas:
 
 1. Quais produtos tiveram mais carrinhos abandonados?
 2. Quais pares de produtos aparecem juntos com mais frequência?
@@ -105,62 +105,38 @@ A solução responde diretamente às seguintes análises de negócio:
 
 ---
 
-## Dashboard entregue
+## Dashboard — Solução proposta
 
-O dashboard foi desenvolvido e está disponível no repositório em formato visual para análise executiva dos principais indicadores de carrinho abandonado.
+A estrutura do dashboard foi pensada para atender ao negócio em diferentes níveis de análise.
 
-### Arquivo entregue
-
-- `dashboard/dashboard-preview.html`
-
-Esse arquivo representa a entrega visual da solução e contempla:
-
-- KPIs principais;
-- top produtos por abandono;
-- evolução temporal;
-- análise geográfica;
-- duplas de produtos mais abandonadas;
-- produtos novos e primeiro mês de lançamento.
-
-### Observação importante sobre os dados de exemplo
-
-Os números apresentados no mockup do dashboard (carrinhos abandonados, itens abandonados, valores não faturados, etc.) são **valores ilustrativos utilizados exclusivamente para demonstração visual da solução**.
-
-Esses números foram gerados a partir da carga de dados de exemplo (`sql/02_load_exemplo.sql`) e podem ser verificados executando as queries em `sql/03_queries_dashboard.sql`.
-
-Para dados reais da CantuStore, execute:
-1. `sql/01_create_dimensoes.sql` (criar tabelas)
-2. Carregue os dados reais da operação
-3. Execute `sql/03_queries_dashboard.sql` (todas as 8 queries)
-
-Os resultados retornarão os valores reais da base de dados.
-
-### Visão executiva (exemplo com dados ilustrativos)
+### Visão executiva
 
 ```
 ┌──────────────────────────────────────────────────────────────┐
-│                CARRINHO ABANDONADO - RESUMO               │
+│              CARRINHO ABANDONADO - RESUMO                 │
 ├──────────────────────────────────────────────────────────────┤
 │  KPI 1: Carrinhos abandonados      KPI 2: Itens abandonados │
-│  [resultado da query 8]            [resultado da query 8]  │
+│  [resultado da query 1]            [resultado da query 1]  │
 │                                                            │
 │  KPI 3: Valor não faturado         KPI 4: Produtos críticos│
-│  [resultado da query 8]            [resultado da query 1]  │
+│  [resultado da query 1]            [resultado da query 1]  │
 └──────────────────────────────────────────────────────────────┘
 ```
 
-### Estrutura do dashboard entregue
+### Páginas do dashboard proposto
 
-O dashboard foi estruturado para responder às 7 perguntas de negócio através de 8 queries:
+1. **Página executiva**: KPIs principais, top produtos, top estados
+2. **Página de produtos**: ranking por produto, aumento de abandono, produtos novos
+3. **Página geográfica**: mapa por UF, ranking por estado
+4. **Página temporal**: evolução diária e mensal, comparação com período anterior
 
-1. Query 1: Top produtos por abandono
-2. Query 2: Duplas de produtos mais abandonadas
-3. Query 3: Produtos com aumento de abandono
-4. Query 4: Produtos novos no primeiro mês
-5. Query 5: Estados com mais abandonos
-6. Query 6: Relatório produto x mês
-7. Query 7: Relatório por data
-8. Query 8: Resumo executivo
+### Métricas centrais alimentadas pelas queries
+
+- `quantidade_carrinhos_abandonados`
+- `quantidade_itens_abandonados`
+- `valor_nao_faturado`
+- `taxa_abandono_por_produto`
+- `crescimento_abandono_mes`
 
 ---
 
@@ -173,16 +149,15 @@ prova-CantuStore/
 │   ├── arquitetura_modelagem.md
 │   ├── relatorio_negocio.md
 │   ├── versao_execucao_bi.md
-│   ├── versao_apresentacao_entrevista.md
-│   └── versao_final_entrega.md
+│   └── versao_apresentacao_entrevista.md
 ├── sql/
 │   ├── 01_create_dimensoes.sql
 │   ├── 02_load_exemplo.sql
 │   └── 03_queries_dashboard.sql
 ├── dashboard/
 │   ├── README.md
-│   ├── dashboard-preview.html
-│   └── powerbi-dashboard-concept.html
+│   ├── powerbi-dashboard-concept.html
+│   └── dashboard-preview.html
 ├── slides/
 │   └── cantustore-deck.html
 ├── data/
@@ -196,34 +171,39 @@ prova-CantuStore/
 ## Como executar a solução
 
 ### 1. Modelagem no SQL
+
 Crie as tabelas com:
 ```sql
 -- Executar: sql/01_create_dimensoes.sql
 ```
 
-### 2. Carregue dados iniciais (ou seus dados reais)
+### 2. Carregue dados
+
 ```sql
 -- Executar: sql/02_load_exemplo.sql
--- Ou, para dados reais, faça um INSERT a partir da sua base operacional
 ```
 
 ### 3. Execute as consultas analíticas
+
 ```sql
 -- Executar: sql/03_queries_dashboard.sql
--- Isso retornará os 8 resultados que alimentam o dashboard
 ```
 
-### 4. Visualize o dashboard entregue
-- `dashboard/dashboard-preview.html` (abrir no navegador)
-- `slides/cantustore-deck.html` (apresentação)
+Isso retornará os 8 resultados que alimentam o dashboard.
 
-Esses arquivos mostram a estrutura visual final e servem como base para implementação em Power BI ou Looker Studio.
+### 4. Implemente o dashboard
+
+Os indicadores estão prontos para serem implementados em:
+- Power BI
+- Looker Studio
+- Qualquer ferramenta de visualização que suporte SQL
 
 ---
 
 ## Decisões técnicas importantes
 
 ### Por que Fato e Dimensão?
+
 Porque esse é o padrão mais adequado para BI e dashboards executivos.
 
 Ele permite:
@@ -235,9 +215,11 @@ Ele permite:
 - manutenção mais simples e sustentável.
 
 ### Por que focar em valor não faturado?
+
 Porque abandonar um carrinho não é só um problema de volume; é também um problema de receita perdida. Esse indicador é estratégico porque mostra o impacto financeiro real da desistência.
 
 ### Por que separar produtos novos?
+
 Porque produtos recém-lançados costumam ter comportamento diferente de itens já consolidados. A análise do primeiro mês é essencial para avaliar aceitação, percepção de valor e conversão inicial.
 
 ---
@@ -265,9 +247,8 @@ Este projeto foi desenvolvido para ser uma solução prática, estruturada e ana
 - estruturar um dashboard executivo capaz de responder às perguntas da área responsável;
 - entregar uma solução coerente para uma prova de Analista de Dados e BI.
 
-A proposta é funcional, clara e alinhada ao contexto da CantuStore.
-
 ---
 
 **Desenvolvido como projeto pessoal para a prova de Analista de Dados e BI da CantuStore**
+
 **Repositório:** https://github.com/luisfernandoti2021-cell/prova-CantuStore
